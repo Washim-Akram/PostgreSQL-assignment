@@ -47,12 +47,15 @@ INSERT INTO sightings (species_id, ranger_id, location, sighting_time, notes) VA
 INSERT INTO rangers (name, region)
 VALUES ('Derek Fox', 'Coastal Plains');
 
+
 -- Problem 2
 SELECT COUNT(DISTINCT species_id) AS unique_species_count FROM sightings;
+
 
 -- Problem 3
 SELECT * FROM sightings
 WHERE location ILIKE '%Pass%';
+
 
 -- Problem 4
 SELECT name, COUNT(*) AS total_sightings
@@ -60,6 +63,7 @@ FROM rangers
 JOIN sightings USING (ranger_id)
 GROUP BY name
 ORDER BY name;
+
 
 -- Problem 5
 SELECT common_name
@@ -69,6 +73,7 @@ WHERE species_id NOT IN (
     FROM sightings
 );
 
+
 -- Problem 6
 SELECT species.common_name, sightings.sighting_time, rangers.name FROM sightings
 INNER JOIN species ON sightings.species_id = species.species_id
@@ -76,15 +81,23 @@ INNER JOIN rangers ON sightings.ranger_id = rangers.ranger_id
 ORDER BY sightings.sighting_time DESC
 LIMIT 2;
 
+
 -- Problem 7
 UPDATE species
 SET conservation_status = 'Historic'
 WHERE discovery_date < DATE '1800-01-01';
 
--- SELECT common_name, discovery_date, conservation_status FROM species
--- WHERE discovery_date < '1800-01-01';
 
 -- Problem 8
+SELECT
+  sighting_id,
+  CASE
+    WHEN EXTRACT(HOUR FROM sighting_time) < 12 THEN 'Morning'
+    WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+    ELSE 'Evening'
+  END AS time_of_day
+FROM sightings;
+
 
 -- Problem 9
 DELETE FROM rangers
@@ -93,7 +106,7 @@ WHERE ranger_id NOT IN (
     FROM sightings
 );
 
--- Check who are going to be delete
+-- Check/Preview of - who are going to be delete
 SELECT * FROM rangers
 WHERE ranger_id NOT IN (
     SELECT DISTINCT ranger_id FROM sightings

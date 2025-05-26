@@ -1,4 +1,20 @@
-# 📂 Bonus Section
+# Wildlife Conservation Monitoring PostgreSQL Project
+
+This project is built using **PostgreSQL** to manage and analyze wildlife conservation data.
+
+## Completed Tasks:
+
+- Problem 1–9 solved using simple, beginner-friendly and easy to understand PostgreSQL techniques.
+- Bonus Section (answered 5+ conceptual questions in Bengali).
+- Simple and clear logic with proper formatting.
+
+---
+
+---
+
+---
+
+# 📂 Bonus Section: (In Bengali)
 
 ## 1. What is PostgreSQL?
 
